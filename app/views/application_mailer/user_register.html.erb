@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome</h1>
+    <p>
+      <%= "#{@user.firstname} #{@user.lastname} #{@user.secondname}" %>,
+    </p>
+    <p>
+      для подтверждения регистрации пройдите по ссылке  <%= confirmation_url(host: Setting.self_host, port: Setting.self_port, token: @user.token) %><br>
+    </p>
+  </body>
+</html>

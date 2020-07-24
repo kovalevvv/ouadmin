@@ -1,0 +1,6 @@
+Welcome
+===============================================
+
+<%= "#{@user.firstname} #{@user.lastname} #{@user.secondname}" %>,
+
+для подтверждения регистрации пройдите по ссылке <%= confirmation_url(host: Setting.self_host, port: Setting.self_port, token: @user.token) %>

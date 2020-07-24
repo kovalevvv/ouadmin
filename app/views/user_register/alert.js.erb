@@ -1,0 +1,9 @@
+<%
+	message = content_tag :ul, :class => "mb-0" do
+		@errors.map do |message| 
+			concat content_tag :li, message
+		end
+	end
+-%>
+$('#alert').html('<%= escape_javascript message %>')
+$('#alert').slideDown( "slow" )

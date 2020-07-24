@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+  ouadmin:
+    build:
+      context: .
+    image: ouadmin
+    environment:
+      - RAILS_ENV=production
+
+      - SMTP_METHOD=smtp
+      - SMTP_DOMAIN=gmail.com
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=user@exampler.com
+      - SMTP_PASS=password
+      - SMTP_STARTTLS=true
+      - SMTP_AUTHENTICATION=login
+
+      - SELF_HOST=localhost
+      - SELF_PORT=443
+
+      - OUADMIN_HOST=ESKEXT-DC01P.ext.corp.mos.ru
+      - OUADMIN_PORT=636
+      - OUADMIN_ENCRYPTION=true
+
+      - OUADMIN_ACCOUNT=Domain\User
+      - OUADMIN_ACCOUNT_PASSWORD=password
+
+      - OUADMIN_GLOBAL_SEARCH_DN=DC=corp,DC=mos,DC=ru
+      - OUADMIN_GLOBAL_SEARCH_PORT=3268
+
+      - OUADMIN_OU_DN=OU=СКВ,OU=ГКУ Инфогород,OU=Департамент информационных технологий,OU=Правительство Москвы,DC=ext,DC=corp,DC=mos,DC=ru
+      - OUADMIN_ADMIN_GROUP=CN=SKV-Admins,OU=СКВ,OU=ГКУ Инфогород,OU=Департамент информационных технологий,OU=Правительство Москвы,DC=ext,DC=corp,DC=mos,DC=ru
+
+    ports:
+      - "443:443"
+      - "80:80"
+
+    volumes:
+      - "/System/Volumes/Data/srv/ouadmin/data:/ouadmin/data"
+

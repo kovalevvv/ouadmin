@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <h1 class="mt-4">Global search</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item active">Global search</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-body"><%= Setting.global_search_dn %></div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Result (<%= @users.count %> entries)</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>sAMAccountName</th>
+                            <th>displayName</th>
+                            <th>mail</th>
+                            <th>name</th>
+                            <th>givenName</th>
+                            <th>sn</th>
+                            <th>dn</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>sAMAccountName</th>
+                            <th>displayName</th>
+                            <th>mail</th>
+                            <th>name</th>
+                            <th>givenName</th>
+                            <th>sn</th>
+                            <th>dn</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <% @users.each do |user| %>
+                        <tr>
+                            <td><%= Mos.get_attr(user, "sAMAccountName") %></td>
+                            <td><%= Mos.get_attr(user, "displayName") %></td>
+                            <td><%= Mos.get_attr(user, "mail") %></td>
+                            <td><%= Mos.get_attr(user, "name") %></td>
+                            <td><%= Mos.get_attr(user, "givenName") %></td>
+                            <td><%= Mos.get_attr(user, "sn") %></td>
+                            <td><%= Mos.get_attr(user, "dn") %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<div class="alert alert-<%= @result.code == 0 ? "success" : "danger" %>" role="alert" id="alert">
+  <h4 class="alert-heading"><%= @result.message %></h4>
+  <p><%= @result.error_message %></p>
+  <p><%= @email_result %></p>
+</div>

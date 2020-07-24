@@ -1,0 +1,35 @@
+<% content_for :header do %>
+Create Account
+<% end %>
+<% content_for :text do %>
+Enter your email address and we will send you a link to reset your password.
+<% end %>
+<%= form_with model: @user, url: registration_path do |f| %>
+    <div class="form-group">
+    	<%= f.label :lastname, "Last name", :class => 'small mb-1' %>
+    	<%= f.text_field :lastname, :class => 'form-control py-4', :placeholder =>  'Фамилия' %>
+    	<%= f.label :firstname, "First name", :class => 'small mb-1' %>
+    	<%= f.text_field :firstname, :class => 'form-control py-4', :placeholder =>  'Имя' %>
+    	<%= f.label :secondname, "First name", :class => 'small mb-1' %>
+    	<%= f.text_field :secondname, :class => 'form-control py-4', :placeholder =>  'Отчество' %>
+    </div>
+    <div class="form-group">
+    	<%= f.label :email, "Email", :class => 'small mb-1' %>
+    	<%= f.email_field :email, :class => 'form-control py-4', :placeholder =>  'Enter email address' %>
+    	<%= f.label :email_confirmation, "Email confirmation", :class => 'small mb-1' %>
+    	<%= f.email_field :email_confirmation, :class => 'form-control py-4', :placeholder =>  'Enter email confirmation' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :subsystem_no, "Подсистема СКВ", :class => 'small mb-1' %>
+        <%= f.select :subsystem_no, Setting.subsystem_no, { include_blank: false }, :class => 'form-control form-control-lg' %>
+        <%= f.label :amenable, "Ответственный сотрудник ДИТ за согласование доступа", :class => 'small mb-1' %>
+        <%= f.text_field :amenable, :class => 'form-control py-4', :placeholder =>  'ФИО' %>
+    </div>
+    <div class="form-group mt-4 mb-0">
+    	<%= f.submit "Register", :class => 'btn btn-primary btn-block' %>
+    </div>
+<% end %>
+<div class="card-footer text-center">
+  <div class="small"><%= link_to "Have an account? Восстановить пароль", password_recovery_path %></a></div>
+</div>
+                                

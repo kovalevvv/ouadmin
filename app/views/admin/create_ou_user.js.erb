@@ -1,0 +1,4 @@
+$('#alert').fadeOut("normal", function() {
+  $(this).remove()
+})
+$('<%= escape_javascript render :partial => "alert" %>').insertAfter('#dn_info').hide().slideDown( "slow" )

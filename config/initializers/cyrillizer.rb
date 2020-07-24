@@ -1,0 +1,1 @@
+Cyrillizer.alphabet = "alphabet/russian.yml"
