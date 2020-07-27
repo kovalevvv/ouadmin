@@ -2,9 +2,9 @@
 
 
 * Задать конфигурацию в docker-compose.yml
-* Задать корретный volume в docker-compose.yml
+* Задать корректный volume (для бд) в docker-compose.yml
 * Заменить ouadmin.key и ouadmin.crt
-* docker-compose build ...
+* docker-compose build & up
 
 - **SMTP_**: Конфигурация smtp
 - **SELF_HOST**: Домен, на котором будет это все работать. Необходимо для формирования ссылок в почтовых уведомлениях
