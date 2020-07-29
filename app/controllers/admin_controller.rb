@@ -41,17 +41,27 @@ class AdminController < ApplicationController
     user = UserRegister.find(params[:user_id]) if params[:user_id]
   	@result = Mos.add(params, user)
     if @result.code == 0
-      user.update_columns(
-        created_account: params.fetch(:sAMAccountName),
-        token: SecureRandom.base58(24),
-        status: 2)
       begin
-        ApplicationMailer.user_set_password(user).deliver_now
+        if user
+          ApplicationMailer.user_set_password(user).deliver_now
+        elsif params[:send_email]
+          user = UserRegister.new(
+            firstname: params.fetch(:givenName),
+            secondname: params.fetch(:secondname),
+            lastname: params.fetch(:sn),
+            email: params.fetch(:mail),
+            status: -1,
+            token: SecureRandom.base58(24),
+            dn: @result.dn
+          )
+          user.save(:validate => false)
+          ApplicationMailer.user_set_password(user).deliver_now
+        end
       rescue => e
         @@logger ||= Logger.new("#{Rails.root}/log/email.log")
-        @@logger.info "#{@user.email}"
+        @@logger.info "#{user.email}"
         @@logger.debug e.message
-        @email_result = 'ошибка почты' and return
+        @email_result = 'ошибка отправки почты!!!' and return
       end
       @email_result = 'письмо отправлено'
     end
