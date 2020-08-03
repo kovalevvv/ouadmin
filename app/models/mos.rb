@@ -68,26 +68,47 @@ class Mos
 			logger.info user
 			logger.info dn
 
-			if user_register
+			if user_register			
 				ldap.add(:dn => dn, :attributes => user)
-				logger.info "CREATE #{ldap.get_operation_result}"
-				user_register.update_column(:dn, dn) if ldap.get_operation_result.code == 0
+				logger.info "CREATE #{ldap.get_operation_result}"		 
+				if ldap.get_operation_result.code == 0
+					user_register.update_columns(
+						dn: dn,
+		        created_account: params.fetch(:sAMAccountName),
+		        token: SecureRandom.base58(24),
+		        status: 2
+		       )
+				end
 				return ldap.get_operation_result
 			end
 
-			# not from user below
-
-			if ldap.add(:dn => dn, :attributes => user)
-				logger.info "CREATE #{ldap.get_operation_result}"
-				sleep 60	
-				ldap.modify(:dn => dn, :operations => [[:replace, :useraccountcontrol, '544']])
-				logger.info "UPDATE useraccountcontrol #{ldap.get_operation_result}"
-				ldap.modify(:dn => dn, :operations => [[:replace, :pwdlastset, '-1']])
-				logger.info "UPDATE pwdlastset #{ldap.get_operation_result}"
-				ldap.modify(:dn => dn, :operations => [[:replace, :unicodePwd, self::str2unicodePwd(params.fetch(:userPassword))]])
-				logger.info "UPDATE userPassword #{ldap.get_operation_result}"
+			os = OpenStruct.new
+			ldap.add(:dn => dn, :attributes => user)
+			os = return_messages(os, ldap, "CREATE")
+			if params.fetch(:whatodo) == 'enable_now'
+				if os.code == 0 
+					ldap.modify(:dn => dn, :operations => [[:replace, :useraccountcontrol, '544']])
+					os = return_messages(os, ldap, "UPDATE useraccountcontrol")
+				end
+				if os.code == 0
+					ldap.modify(:dn => dn, :operations => [[:replace, :pwdlastset, '-1']])
+					os = return_messages(os, ldap, "UPDATE pwdlastset")
+				end
+				if os.code == 0
+					ldap.modify(:dn => dn, :operations => [[:replace, :unicodePwd, self::str2unicodePwd(params.fetch(:userPassword))]])
+					os = return_messages(os, ldap, "UPDATE userPassword")
+				end
 			end
-			ldap.get_operation_result
+			os.dn = dn
+			os
+		end
+
+		def return_messages(os, ldap, prefix)
+			message = "#{prefix}: #{ldap.get_operation_result.error_message.present? ? ldap.get_operation_result.error_message : ldap.get_operation_result.message}"
+			logger.info message
+			os.code = ldap.get_operation_result.code
+			os.message = os.message.nil? ? "#{message} <br/>".html_safe : os.message + "#{message} <br/>".html_safe
+			os
 		end
 
 		def search_free_logon(logon)

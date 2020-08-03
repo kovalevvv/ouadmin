@@ -8,7 +8,7 @@ class UserPassword
 
 	validates :password, format: { 
 		with: /\A(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, 
-		message: "must include at least one lowercase letter, one uppercase letter, and one digit" 
+		message: "must include at least one lowercase letter, one uppercase letter, and one digit и символ" 
 	}
 
 	validates :password, confirmation: true
@@ -37,9 +37,9 @@ class UserPassword
   	if self.valid? and self.user.class.name == 'UserRegister'
   		ldap = Mos::initialize_ldap_con(Setting.account, Setting.account_password, port: Setting.port)
   		ldap.modify(:dn => self.user.dn, :operations => [[:replace, :useraccountcontrol, '544']])
-			logger.info "SET_PASSWORD (#{self.user.created_account}) useraccountcontrol #{ldap.get_operation_result}"
-			logger.info "SET_PASSWORD (#{self.user.created_account}) pwdlastset #{ldap.get_operation_result}"
+			logger.info "SET_PASSWORD (#{self.user.created_account}) useraccountcontrol #{ldap.get_operation_result}"		
 			ldap.modify(:dn => self.user.dn, :operations => [[:replace, :pwdlastset, '-1']])
+			logger.info "SET_PASSWORD (#{self.user.created_account}) pwdlastset #{ldap.get_operation_result}"
   		ldap.modify(
   			:dn => self.user.dn, 
   			:operations => [[:replace, :unicodePwd, Mos::str2unicodePwd(self.password)]]
