@@ -85,7 +85,7 @@ class Mos
 			os = OpenStruct.new
 			ldap.add(:dn => dn, :attributes => user)
 			os = return_messages(os, ldap, "CREATE")
-			if params.fetch(:user_enable)
+			if params.fetch(:whatodo) == 'enable_now'
 				if os.code == 0 
 					ldap.modify(:dn => dn, :operations => [[:replace, :useraccountcontrol, '544']])
 					os = return_messages(os, ldap, "UPDATE useraccountcontrol")
@@ -104,12 +104,10 @@ class Mos
 		end
 
 		def return_messages(os, ldap, prefix)
-			message = "#{prefix}: #{ldap.get_operation_result}"
+			message = "#{prefix}: #{ldap.get_operation_result.error_message.present? ? ldap.get_operation_result.error_message : ldap.get_operation_result.message}"
 			logger.info message
-			if os.code.nil? or os.code == 0
-				os.code = ldap.get_operation_result.code
-			end
-			os.message << "#{message} <br/>".html_safe
+			os.code = ldap.get_operation_result.code
+			os.message = os.message.nil? ? "#{message} <br/>".html_safe : os.message + "#{message} <br/>".html_safe
 			os
 		end
 

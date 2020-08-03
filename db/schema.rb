@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_101544) do
+ActiveRecord::Schema.define(version: 2020_07_06_093744) do
 
   create_table "settings", force: :cascade do |t|
     t.string "var", null: false
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_06_19_101544) do
     t.string "token"
     t.string "created_account"
     t.string "dn"
+    t.integer "subsystem_no"
+    t.string "amenable"
   end
 
   create_table "users", force: :cascade do |t|

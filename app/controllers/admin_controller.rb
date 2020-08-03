@@ -44,26 +44,34 @@ class AdminController < ApplicationController
       begin
         if user
           ApplicationMailer.user_set_password(user).deliver_now
-        elsif params[:send_email]
-          user = UserRegister.new(
+        else
+          user_unregistered = UserRegister.new(
             firstname: params.fetch(:givenName),
             secondname: params.fetch(:secondname),
             lastname: params.fetch(:sn),
             email: params.fetch(:mail),
-            status: -1,
-            token: SecureRandom.base58(24),
+            created_account: params.fetch(:sAMAccountName),
+            status: 2,
             dn: @result.dn
           )
-          user.save(:validate => false)
-          ApplicationMailer.user_set_password(user).deliver_now
+          user_unregistered.status = 3 if params[:whatodo] == 'enable_now'
+          user_unregistered.token = SecureRandom.base58(24) if params[:whatodo] == 'enable_email'
+          user_unregistered.save(:validate => false)
+          
+          if params[:whatodo] == 'enable_email'
+            ApplicationMailer.user_set_password(user_unregistered).deliver_now
+          end
         end
       rescue => e
+        user ||= user_unregistered
         @@logger ||= Logger.new("#{Rails.root}/log/email.log")
         @@logger.info "#{user.email}"
         @@logger.debug e.message
         @email_result = 'ошибка отправки почты!!!' and return
       end
-      @email_result = 'письмо отправлено'
+      if user or (user_unregistered and params[:whatodo] == 'enable_email')
+        @email_result = 'письмо отправлено'
+      end
     end
   end
 
