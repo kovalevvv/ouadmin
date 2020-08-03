@@ -1,7 +1,7 @@
 # ИНСТРУКЦИЯ
 
 
-* Задать конфигурацию в docker-compose.yml
+* Задать конфигурацию в docker-compose.yml (пример конфигурации в docker-compose-default.yml)
 * Задать корректный volume (для бд) в docker-compose.yml
 * Заменить ouadmin.key и ouadmin.crt
 * docker-compose build & up
