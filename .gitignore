@@ -7,6 +7,9 @@
 # ignore docker-compose configuration
 docker-compose.yml
 
+# ignore gems
+Gemfile.lock
+
 # Ignore bundler config.
 /.bundle
 
