@@ -34,8 +34,9 @@ services:
       - OUADMIN_ADMIN_GROUP=CN=SKV-Admins,OU=СКВ,OU=ГКУ Инфогород,OU=Департамент информационных технологий,OU=Правительство Москвы,DC=ext,DC=corp,DC=mos,DC=ru
 
     ports:
-      - "443:443"
-      - "80:80"
+#      - "443:443"
+#      - "80:80"
+       - 8080:8080
 
     volumes:
       - "/System/Volumes/Data/srv/ouadmin/data:/ouadmin/data"
