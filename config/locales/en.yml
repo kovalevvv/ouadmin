@@ -32,3 +32,12 @@
 en:
   hello: "Hello world"
   mail_sent_error: "Mailing error"
+  label_user_firstname: "First name"
+  label_user_lastname: "Last name"
+  label_user_secondname: "Second name"
+  label_user_phone: "Phone"
+  label_user_company: "Company"
+  label_user_email: "Email"
+  label_user_button: "Action"
+  label_user_status: "Status"
+  label_user_sd: "SD"
