@@ -24,7 +24,29 @@ class AdminController < ApplicationController
   end
 
   def dashboard
-  	@users = UserRegister.where(status: [1,2,3])
+    @users_attrs = user_attrs.collect do |at| 
+      { title: helpers.t("%s_%s" % ["label_user", at]) }
+    end
+  end
+
+  def users
+    @users = UserRegister.where(status: [1,2,3]).map do |user|
+      entry = user.serializable_hash
+      out = []
+      user_attrs.each do |at|
+        if at == "button"
+          out << if user.created_account.present?
+            user.created_account
+          else
+            helpers.link_to("Создать",new_user_from_user_path(user_id: user.id), :class => 'btn btn-primary')
+          end
+        else
+          out << entry[at]
+        end
+      end
+      out
+    end
+    render json: { data: @users }
   end
 
   def search
@@ -121,6 +143,10 @@ class AdminController < ApplicationController
   end
 
   private
+
+    def user_attrs
+      ["firstname", "lastname", "secondname", "phone", "company", "email", "button", "status", "sd"]
+    end
 
     def user_logged?
       redirect_to login_url if user_current.nil?

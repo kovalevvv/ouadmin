@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root 'user_register#new'
   
   get 'admin/dashboard'
+  get 'admin/users'
   post 'admin/search'
   get 'admin/new_user'
   get 'admin/new_user/:user_id', to: 'admin#new_user', as: 'new_user_from_user'

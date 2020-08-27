@@ -1,7 +1,16 @@
 <%= content_for :scripts do %>
   <script src="/assets/demo/chart-area-demo.js"></script>
   <script src="/assets/demo/chart-bar-demo.js"></script>
-  <script src="/assets/demo/datatables-demo.js"></script>
+  <%= javascript_tag do %>
+  $('.table-responsive').html('<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"></table>')
+  $(document).ready(function() {  
+    $('#dataTable').DataTable( {
+        ajax: '/admin/users',
+        columns: <%= raw @users_attrs.to_json %>
+      });
+  });
+
+  <% end %>
 <% end %>
 <div class="container-fluid">
                         <h1 class="mt-4">Dashboard</h1>
@@ -61,53 +70,9 @@
                             </div>
                         </div>
                         <div class="card mb-4">
-                            <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
+                            <div class="card-header"><i class="fas fa-table mr-1"></i>Users</div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>First name</th>
-                                                <th>Last name</th>
-                                                <th>Second name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>Company</th>
-                                                <th>Created account</th>
-                                                <th>Status</th>
-                                                <th>Sd</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>First name</th>
-                                                <th>Last name</th>
-                                                <th>Second name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>Company</th>
-                                                <th>Created account</th>
-                                                <th>Status</th>
-                                                <th>Sd</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <% @users.each do |user| %>
-                                            <tr>
-                                                <td><%= user.firstname %></td>
-                                                <td><%= user.lastname %></td>
-                                                <td><%= user.secondname %></td>
-                                                <td><%= user.email %></td>
-                                                <td><%#= user.phone %></td>
-                                                <td><%#= user.company %></td>
-                                                <td><%= user.created_account.present? ? user.created_account : link_to("Создать",new_user_from_user_path(user_id: user.id), :class => 'btn btn-primary') %></td>
-                                                <td><%= user.status %></td>
-                                                <td><%#= user.sd %></td>
-                                            </tr>
-                                            <% end %>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <div class="table-responsive"></div>
                             </div>
                         </div>
                     </div>
