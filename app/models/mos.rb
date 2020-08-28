@@ -93,10 +93,20 @@ class Mos
 				if os.code == 0
 					ldap.modify(:dn => dn, :operations => [[:replace, :pwdlastset, '-1']])
 					os = return_messages(os, ldap, "UPDATE pwdlastset")
+				else
+					ldap.delete :dn => dn
+					os = return_messages(os, ldap, "DELETE")
 				end
 				if os.code == 0
 					ldap.modify(:dn => dn, :operations => [[:replace, :unicodePwd, self::str2unicodePwd(params.fetch(:userPassword))]])
 					os = return_messages(os, ldap, "UPDATE userPassword")
+				else
+					ldap.delete :dn => dn
+					os = return_messages(os, ldap, "DELETE")
+				end
+				unless os.code == 0
+					ldap.delete :dn => dn
+					os = return_messages(os, ldap, "DELETE")
 				end
 			end
 			os.dn = dn
@@ -106,7 +116,7 @@ class Mos
 		def return_messages(os, ldap, prefix)
 			message = "#{prefix}: #{ldap.get_operation_result.error_message.present? ? ldap.get_operation_result.error_message : ldap.get_operation_result.message}"
 			logger.info message
-			os.code = ldap.get_operation_result.code
+			os.code = ldap.get_operation_result.code if os.code == 0 || os.code.nil?
 			os.message = os.message.nil? ? "#{message} <br/>".html_safe : os.message + "#{message} <br/>".html_safe
 			os
 		end
