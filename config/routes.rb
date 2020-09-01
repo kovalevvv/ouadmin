@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   post 'password_recovery', to: 'user_register#password_recovery'
   root 'user_register#new'
   
+  get 'admin', to: redirect('/admin/dashboard')
   get 'admin/dashboard'
   get 'admin/users'
-  post 'admin/search'
+  get 'admin/search'
   get 'admin/new_user'
   get 'admin/new_user/:user_id', to: 'admin#new_user', as: 'new_user_from_user'
   post 'admin/new_user', to: 'admin#create_user'

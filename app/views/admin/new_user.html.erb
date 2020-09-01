@@ -1,3 +1,4 @@
+<% content_for :title, t(".named_title", name: "#{@user.lastname} #{@user.firstname} #{@user.secondname}") if @user %>
 <div class="container-fluid">
   <h1 class="mt-4">New user</h1>
   <ol class="breadcrumb mb-4">

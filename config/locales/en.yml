@@ -30,6 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  app:
+    name: OUAdmin
   hello: "Hello world"
   mail_sent_error: "Mailing error"
   label_user_firstname: "First name"
@@ -41,3 +43,22 @@ en:
   label_user_button: "Action"
   label_user_status: "Status"
   label_user_sd: "SD"
+  user_register:
+    new:
+      title: Register
+    confirmation:
+      title: Confirmation
+    password_recovery_form:
+      title: Password recovery
+    set_password_form:
+      title: Set password
+  admin:
+    login:
+      title: Authorization
+    dashboard:
+      title: Dasboard
+    new_user:
+      title: New user
+      named_title: New user [%{name}]
+    search:
+      title: Search [%{q}]
