@@ -59,5 +59,6 @@ en:
       title: Dasboard
     new_user:
       title: New user
+      named_title: New user [%{name}]
     search:
-      title: "Search"
+      title: Search [%{q}]
