@@ -11,42 +11,42 @@
   <%= form_tag({:controller => 'admin', :action => 'create_ou_user'}, :id => 'create_logon_form', :remote => true) do %>
     <div class="col-md-5">
     <div class="form-group">
-        <label for="lastname">Last name</label>
-        <input type="text" name="sn" id="lastname" class="form-control form-control-lg" placeholder="Фамилия" value="<%= @user.lastname if @user %>" required>
+      <%= label_tag :sn, "Last name" %>
+      <%= text_field_tag :sn, (@user.lastname if @user), id: 'lastname', :class => 'form-control form-control-lg', placeholder: 'Фамилия', :required => :true %>
     </div>
     <div class="form-group">
-      <label for="firstname">First name</label>
-      <input type="text" name="givenName" id="firstname" class="form-control form-control-lg" placeholder="Имя" value="<%= @user.firstname if @user %>" required>
+      <%= label_tag :givenName, "First name" %>
+      <%= text_field_tag :givenName, (@user.firstname if @user), id: 'firstname', :class => 'form-control form-control-lg', placeholder: 'Имя', :required => :true %>
     </div>
     <div class="form-group">
-      <label for="secondname">Second name</label>
-      <input type="text" name="secondname" id="secondname" class="form-control form-control-lg" placeholder="Отчество" value="<%= @user.secondname if @user %>" required>
+      <%= label_tag :secondname, "Second name" %>
+      <%= text_field_tag :secondname, (@user.secondname if @user), id: 'secondname', :class => 'form-control form-control-lg', placeholder: 'Отчество', :required => :true %>
     </div>
     <fieldset disabled>
       <div class="form-group">
-        <label for="fullname">Full name</label>
-        <input type="text" name="cn" class="form-control" id="fullname" aria-describedby="fullnameHelp" placeholder="">
+        <%= label_tag :cn, "Full name" %>
+        <%= text_field_tag :cn, nil, id: 'fullname', :class => 'form-control', :'aria-describedby' => 'fullnameHelp', placeholder: '' %>
         <small id="fullnameHelp" class="form-text text-muted">Generates automatically</small>
       </div>
     </fieldset>
-    <label for="logonname">User logon name</label>
+    <%= label_tag :sAMAccountName, "User logon name" %>
     <div class="input-group">
-      <input type="text" name="sAMAccountName" class="form-control" id="logonname" placeholder="" required value="">
+      <%= text_field_tag :sAMAccountName, nil, id: 'logonname', :class => 'form-control', placeholder: '', :required => :true %>
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="button" onclick="javascript:generate_or_check_logon();"><%= octicon "checklist" %></button>
       </div>
     </div>
-    <label for="email">Email address</label>
+    <%= label_tag :mail, "Email address" %>
      <div class="input-group mb-3">
-      <input type="email" name="mail" class="form-control" id="email" aria-describedby="emailHelp" value="<%= @user.email if @user %>" placeholder="Enter email" onblur="javascript:check_email();">
+      <%= email_field_tag :mail, (@user.email if @user), id: 'email', :class => 'form-control', :'aria-describedby' => 'emailHelp', placeholder: 'Enter email', :onblur => 'javascript:check_email()' %>
       <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" onclick="javascript:check_email();"><%= octicon "checklist" %></button>
+        <button class="btn btn-outline-secondary" type="button" onclick="javascript:check_email()"><%= octicon "checklist" %></button>
       </div>
     </div>
     <% unless @user %>
-    <label for="password">Password</label>
+    <%= label_tag :userPassword, "Password" %>
     <div class="input-group mb-3">
-      <input type="password" name="userPassword" class="form-control pwd" id="password" placeholder="password" autocomplete="new-password" value="<%= Passgen::generate :digits => true, :symbols => true, :length => 10 %>" required>
+      <%= password_field_tag :userPassword, (Passgen::generate :digits => true, :symbols => true, :length => 10), id: 'password', :class => 'form-control pwd', placeholder: 'password', :autocomplete => 'new-password', :required => :true %>
       <div class="input-group-append">
         <button class="btn btn-outline-secondary reveal" type="button"><%= octicon "eye-closed" %></button>
       </div>
@@ -63,7 +63,7 @@
       <%= hidden_field_tag :user_id, @user.id %>
     <% end %>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <button type="submit" class="btn-lg btn-primary float-right">Create</button>
+    <%= button_tag 'Create', :class => 'btn-lg btn-primary float-right', data: { disable_with: "Saving..." } %>
     </div>
   <% end %>
 </div>

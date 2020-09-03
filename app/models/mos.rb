@@ -78,6 +78,9 @@ class Mos
 		        token: SecureRandom.base58(24),
 		        status: 2
 		       )
+					if params.fetch(:mail).present? # override email only
+						user_register.update_columns email: params.fetch(:mail)
+					end
 				end
 				return ldap.get_operation_result
 			end
