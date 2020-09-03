@@ -32,17 +32,30 @@
 en:
   app:
     name: OUAdmin
-  hello: "Hello world"
-  mail_sent_error: "Mailing error"
-  label_user_firstname: "First name"
-  label_user_lastname: "Last name"
-  label_user_secondname: "Second name"
-  label_user_phone: "Phone"
-  label_user_company: "Company"
-  label_user_email: "Email"
-  label_user_button: "Action"
-  label_user_status: "Status"
-  label_user_sd: "SD"
+  hello: Hello world
+  mail_sent_error: Mailing error
+  label_user_firstname: First name
+  label_user_lastname: Last name
+  label_user_secondname: Second name
+  label_user_fullname: Full name
+  label_user_logonname: logon
+  label_user_phone: Phone
+  label_user_company: Company
+  label_user_email: Email
+  label_user_password: Password
+  label_user_button: Action
+  label_user_status: Status
+  label_user_sd: SD
+  placeholder_user_firstname: Enter first name
+  placeholder_user_lastname: Enter last name
+  placeholder_user_secondname: Enter second name
+  placeholder_user_logon: Enter logon or generate
+  placeholder_user_email: Enter email
+  text_autogenerate: Generates automatically
+  text_user_enable: User enable?
+  text_user_mail_send: Send an email with a password reset link?
+  header_new_user: New user
+  tooltip_dn_info: Where
   user_register:
     new:
       title: Register

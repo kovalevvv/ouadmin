@@ -88,11 +88,9 @@ class Mos
 			os = OpenStruct.new
 			ldap.add(:dn => dn, :attributes => user)
 			os = return_messages(os, ldap, "CREATE")
-			if params.fetch(:whatodo) == 'enable_now'
-				if os.code == 0 
-					ldap.modify(:dn => dn, :operations => [[:replace, :useraccountcontrol, '544']])
-					os = return_messages(os, ldap, "UPDATE useraccountcontrol")
-				end
+			if params.fetch(:whatodo) == 'enable_now' and os.code == 0
+				ldap.modify(:dn => dn, :operations => [[:replace, :useraccountcontrol, '544']])
+				os = return_messages(os, ldap, "UPDATE useraccountcontrol")
 				if os.code == 0
 					ldap.modify(:dn => dn, :operations => [[:replace, :pwdlastset, '-1']])
 					os = return_messages(os, ldap, "UPDATE pwdlastset")
@@ -107,7 +105,7 @@ class Mos
 					ldap.delete :dn => dn
 					os = return_messages(os, ldap, "DELETE")
 				end
-				unless os.code == 0
+				unless os.code == 0 # if password error
 					ldap.delete :dn => dn
 					os = return_messages(os, ldap, "DELETE")
 				end
