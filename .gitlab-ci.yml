@@ -1,0 +1,13 @@
+
+before_script:
+  - echo `pwd`
+  - echo `id`
+
+after_script:
+  - echo "yeap!"
+
+
+build:
+  stage: build
+  script:
+    - echo "Do your build here"
