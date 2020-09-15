@@ -1,0 +1,8 @@
+before_script:
+  - cp /srv/ouadmin/docker-compose.yml .
+
+build:
+  stage: build
+  script:
+    - docker-compose build
+    - docker-compose up -d
