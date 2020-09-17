@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'ou.mngr@gmail.com'
+  default from: ENV.fetch('MAIL_FROM')
   layout 'mailer'
   self.raise_delivery_errors = true
 
