@@ -6,3 +6,6 @@ build:
   script:
     - docker-compose build
     - docker-compose up -d
+
+after_script:
+  - docker exec ouadmin_ouadmin_1 bash -c "echo '10.89.65.20 eps-relay01.mos.ru' >> /etc/hosts"
