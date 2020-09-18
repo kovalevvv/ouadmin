@@ -42,6 +42,9 @@ en:
   label_user_phone: Phone
   label_user_company: Company
   label_user_email: Email
+  label_user_email_confirmation: Email confirmation
+  label_user_subsystem_no: Подсистема СКВ
+  label_user_amenable: Ответственный сотрудник ДИТ за согласование доступа
   label_user_password: Password
   label_user_button: Action
   label_user_status: Status
@@ -51,6 +54,8 @@ en:
   placeholder_user_secondname: Enter second name
   placeholder_user_logon: Enter logon or generate
   placeholder_user_email: Enter email
+  placeholder_user_email_confirmation: Enter email confirmation
+  placeholder_user_amenable: ФИО
   text_autogenerate: Generates automatically
   text_user_enable: User enable?
   text_user_mail_send: Send an email with a password reset link?
