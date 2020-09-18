@@ -2,34 +2,34 @@
 Create Account
 <% end %>
 <% content_for :text do %>
-Enter your email address and we will send you a link to reset your password.
+Enter your email address and we will send you a link to create your account.
 <% end %>
 <%= form_with model: @user, url: registration_path do |f| %>
     <div class="form-group">
-    	<%= f.label :lastname, "Last name", :class => 'small mb-1' %>
-    	<%= f.text_field :lastname, :class => 'form-control py-4', :placeholder =>  'Фамилия' %>
-    	<%= f.label :firstname, "First name", :class => 'small mb-1' %>
-    	<%= f.text_field :firstname, :class => 'form-control py-4', :placeholder =>  'Имя' %>
-    	<%= f.label :secondname, "First name", :class => 'small mb-1' %>
-    	<%= f.text_field :secondname, :class => 'form-control py-4', :placeholder =>  'Отчество' %>
+    	<%= f.label :lastname, t(:label_user_lastname), :class => 'small mb-1' %>
+    	<%= f.text_field :lastname, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_lastname) %>
+    	<%= f.label :firstname, t(:label_user_firstname), :class => 'small mb-1' %>
+    	<%= f.text_field :firstname, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_firstname) %>
+    	<%= f.label :secondname, t(:label_user_secondname), :class => 'small mb-1' %>
+    	<%= f.text_field :secondname, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_secondname) %>
     </div>
     <div class="form-group">
-    	<%= f.label :email, "Email", :class => 'small mb-1' %>
-    	<%= f.email_field :email, :class => 'form-control py-4', :placeholder =>  'Enter email address' %>
-    	<%= f.label :email_confirmation, "Email confirmation", :class => 'small mb-1' %>
-    	<%= f.email_field :email_confirmation, :class => 'form-control py-4', :placeholder =>  'Enter email confirmation' %>
+    	<%= f.label :email, t(:label_user_email), :class => 'small mb-1' %>
+    	<%= f.email_field :email, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_email) %>
+    	<%= f.label :email_confirmation, t(:label_user_email_confirmation), :class => 'small mb-1' %>
+    	<%= f.email_field :email_confirmation, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_email_confirmation) %>
     </div>
     <div class="form-group">
-        <%= f.label :subsystem_no, "Подсистема СКВ", :class => 'small mb-1' %>
+        <%= f.label :subsystem_no, t(:label_user_subsystem_no), :class => 'small mb-1' %>
         <%= f.select :subsystem_no, Setting.subsystem_no, { include_blank: false }, :class => 'form-control form-control-lg' %>
-        <%= f.label :amenable, "Ответственный сотрудник ДИТ за согласование доступа", :class => 'small mb-1' %>
-        <%= f.text_field :amenable, :class => 'form-control py-4', :placeholder =>  'ФИО' %>
+        <%= f.label :amenable, t(:label_user_amenable), :class => 'small mb-1' %>
+        <%= f.text_field :amenable, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_amenable) %>
     </div>
     <div class="form-group mt-4 mb-0">
     	<%= f.submit "Register", :class => 'btn btn-primary btn-block' %>
     </div>
 <% end %>
 <div class="card-footer text-center">
-  <div class="small"><%= link_to "Have an account? Восстановить пароль", password_recovery_path %></a></div>
+  <div class="small"><%= link_to "Have an account? Password recover", password_recovery_path %></a></div>
 </div>
                                 
