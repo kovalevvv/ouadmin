@@ -9,7 +9,7 @@
       <%= "#{@user.firstname} #{@user.lastname} #{@user.secondname}" %>,
     </p>
     <p>
-      для подтверждения регистрации пройдите по ссылке  <%= confirmation_url(host: Setting.self_host, port: Setting.self_port, token: @user.token) %><br>
+      для подтверждения регистрации пройдите по ссылке  <%= confirmation_url(token: @user.token) %><br>
     </p>
   </body>
 </html>
