@@ -34,6 +34,8 @@ en:
     name: OUAdmin
   hello: Hello world
   mail_sent_error: Mailing error
+  button_register: Register
+  button_register_disable: Processing...
   label_user_firstname: First name
   label_user_lastname: Last name
   label_user_secondname: Second name
@@ -59,6 +61,9 @@ en:
   text_autogenerate: Generates automatically
   text_user_enable: User enable?
   text_user_mail_send: Send an email with a password reset link?
+  text_user_registration: Enter your email address and we will send you a link to create your account.
+  text_user_registration_header: Create account
+  link_password_recover: Have an account? Password recover
   header_new_user: New user
   tooltip_dn_info: Where
   user_register:

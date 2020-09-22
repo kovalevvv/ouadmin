@@ -1,9 +1,9 @@
-<% content_for :header do %>
-Create Account
-<% end %>
-<% content_for :text do %>
-Enter your email address and we will send you a link to create your account.
-<% end %>
+<% content_for :header do
+  t(:text_user_registration_header)
+end %>
+<% content_for :text do
+  t(:text_user_registration)
+end %>
 <%= form_with model: @user, url: registration_path do |f| %>
     <div class="form-group">
     	<%= f.label :lastname, t(:label_user_lastname), :class => 'small mb-1' %>
@@ -26,10 +26,10 @@ Enter your email address and we will send you a link to create your account.
         <%= f.text_field :amenable, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_amenable) %>
     </div>
     <div class="form-group mt-4 mb-0">
-    	<%= f.submit "Register", :class => 'btn btn-primary btn-block' %>
+    	<%= f.submit t(:button_register), :class => 'btn btn-primary btn-block', data: { disable_with: t(:button_register_disable) } %>
     </div>
 <% end %>
 <div class="card-footer text-center">
-  <div class="small"><%= link_to "Have an account? Password recover", password_recovery_path %></a></div>
+  <div class="small"><%= link_to t(:link_password_recover), password_recovery_path %></a></div>
 </div>
                                 
