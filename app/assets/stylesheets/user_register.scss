@@ -1,3 +1,15 @@
 // Place all the styles related to the UserRegister controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.loadingio-spinner-wedges-mbm5x7g994r {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  display: none;
+  position:   fixed;
+  z-index:    1000;
+  top:        20%;
+  left:       44%;
+}

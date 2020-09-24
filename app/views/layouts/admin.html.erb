@@ -122,17 +122,17 @@
           <div class="ldio-7jilsa7etq"><div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div></div>
           </div>
         </div>
-        <div class="modal"></div>
+        <div class="overlay"></div>
 
 
 <%= javascript_tag do %>
  $(document).bind('ajax:send', function() {
     $('.loadingio-spinner-wedges-mbm5x7g994r').show()
-    $('.modal').show()
+    $('.overlay').show()
   })
   $(document).bind('ajax:complete', function() {
     $('.loadingio-spinner-wedges-mbm5x7g994r').hide()
-    $('.modal').hide()
+    $('.overlay').hide()
   });
 <% end %>
 
