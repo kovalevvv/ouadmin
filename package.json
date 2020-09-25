@@ -6,10 +6,19 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
+    "bootstrap": "^4.5.2",
+    "chart.js": "^2.9.3",
+    "datatables.net": "^1.10.22",
+    "datatables.net-bs4": "^1.10.22",
+    "font-awesome": "^4.7.0",
+    "imports-loader": "^1.1.0",
+    "jquery": "^3.5.1",
+    "jquery.tooltips": "^1.0.0",
+    "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.11.0"
   }
 }

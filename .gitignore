@@ -7,6 +7,8 @@
 # local dotenv
 .env
 
+.yarn.lock
+
 # ignore docker-compose configuration
 docker-compose.yml
 
