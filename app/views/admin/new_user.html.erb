@@ -1,3 +1,61 @@
+<%= content_for :scripts do %>
+  <%=javascript_tag do %>
+  function generate_or_check_logon() {
+  var data = $("#create_logon_form").serialize();
+  $.ajax({
+      type: "POST",
+      url: "<%= admin_generate_or_check_logon_path %>",
+      data: data,
+      dataType: "script"
+  });
+  }
+
+  function check_email() {
+    var data = $("#create_logon_form").serialize();
+    $.ajax({
+        type: "POST",
+        url: "<%= admin_check_email_path %>",
+        data: data,
+        dataType: "script"
+    });
+  }
+
+  function generate_cn() {
+    $('input#fullname').val(`${$('input#lastname').val()} ${$('input#firstname').val()} ${$('input#secondname').val()}`)
+  }
+
+  $(document).ready(function(){
+    $('#dn_info').tooltip()
+      $(".reveal").on('click',function() {
+      var pwd = $(".pwd");
+      if (pwd.attr('type') === 'password') {
+          pwd.attr('type', 'text');
+          $(this).html('<%= j octicon "eye" %>')
+      } else {
+          pwd.attr('type', 'password');
+          $(this).html('<%= j octicon "eye-closed" %>')
+      }
+    })
+
+    $('input#lastname').change(generate_cn()).keyup(generate_cn)
+    $('input#firstname').change(generate_cn()).keyup(generate_cn)
+    $('input#secondname').change(generate_cn()).keyup(generate_cn)
+
+    $("#create_logon_form").on('ajax:beforeSend', function() {
+      if (!$('#email').val()) {
+        return confirm("Create user with empty email?")
+      } else {
+        check_email()
+        if (!email_validate) {
+          return confirm("Create user with not valid email?")
+        }
+        return true
+      }
+    })
+  
+  })
+  <% end %>
+<% end %>
 <% content_for :title, t(".named_title", name: "#{@user.lastname} #{@user.firstname} #{@user.secondname}") if @user %>
 <div class="container-fluid">
   <h1 class="mt-4"><%= t(:header_new_user) %></h1>
@@ -67,61 +125,3 @@
     </div>
   <% end %>
 </div>
-<%= content_for :scripts do %>
-  <%= javascript_tag do %>
-  $(document).ready((function(){
-    function generate_cn() {
-      $('input#fullname').val(`${$('input#lastname').val()} ${$('input#firstname').val()} ${$('input#secondname').val()}`)
-    }
-    $('input#lastname').change(generate_cn()).keyup(generate_cn)
-    $('input#firstname').change(generate_cn()).keyup(generate_cn)
-    $('input#secondname').change(generate_cn()).keyup(generate_cn)
-  }))
-
-  $("#create_logon_form").on('ajax:beforeSend', function() {
-    if (!$('#email').val()) {
-      return confirm("Create user with empty email?")
-    } else {
-      check_email()
-      if (!email_validate) {
-        return confirm("Create user with not valid email?")
-      }
-      return true
-    }
-  });
-
-  function generate_or_check_logon() {
-    var data = $("#create_logon_form").serialize();
-    $.ajax({
-        type: "POST",
-        url: "<%= admin_generate_or_check_logon_path %>",
-        data: data,
-        dataType: "script"
-    });
-  }
-
-  function check_email() {
-    var data = $("#create_logon_form").serialize();
-    $.ajax({
-        type: "POST",
-        url: "<%= admin_check_email_path %>",
-        data: data,
-        dataType: "script"
-    });
-  }
-
-  $(".reveal").on('click',function() {
-    var pwd = $(".pwd");
-    if (pwd.attr('type') === 'password') {
-        pwd.attr('type', 'text');
-        $(this).html('<%= j octicon "eye" %>')
-    } else {
-        pwd.attr('type', 'password');
-        $(this).html('<%= j octicon "eye-closed" %>')
-    }
-  });
-
-  $('#dn_info').tooltip();
-
-  <% end %>
-<% end %>

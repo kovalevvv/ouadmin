@@ -115,26 +115,31 @@
                     </div>
                 </footer>
             </div>
-        </div>
-        <script src="/js/scripts.js"></script>           
+        </div>           
         <%= content_for :scripts %>
         <div class="loadingio-spinner-wedges-mbm5x7g994r">
           <div class="ldio-7jilsa7etq"><div><div><div></div></div><div><div></div></div><div><div></div></div><div><div></div></div></div>
           </div>
         </div>
         <div class="overlay"></div>
+        <%= javascript_tag do %>
+        (function($) {
+            "use strict";
 
+            // Add active state to sidbar nav links
+            var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+                $("#layoutSidenav_nav .sb-sidenav a.nav-link").each(function() {
+                    if (this.href === path) {
+                        $(this).addClass("active");
+                    }
+                });
 
-<%= javascript_tag do %>
- $(document).bind('ajax:send', function() {
-    $('.loadingio-spinner-wedges-mbm5x7g994r').show()
-    $('.overlay').show()
-  })
-  $(document).bind('ajax:complete', function() {
-    $('.loadingio-spinner-wedges-mbm5x7g994r').hide()
-    $('.overlay').hide()
-  });
-<% end %>
-
+            // Toggle the side navigation
+            $("#sidebarToggle").on("click", function(e) {
+                e.preventDefault();
+                $("body").toggleClass("sb-sidenav-toggled");
+            });
+        })(jQuery);
+        <% end %>
     </body>
 </html>
