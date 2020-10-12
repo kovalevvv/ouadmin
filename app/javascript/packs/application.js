@@ -20,3 +20,14 @@ require('jquery.tooltips')
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+$(document).ready(function(){
+ $(document).bind('ajax:send', function() {
+    $('.loadingio-spinner-wedges-mbm5x7g994r').show()
+    $('.overlay').show()
+  })
+  $(document).bind('ajax:complete', function() {
+    $('.loadingio-spinner-wedges-mbm5x7g994r').hide()
+    $('.overlay').hide()
+  })
+})

@@ -10,7 +10,7 @@
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
       <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag  'application', 'user_register', 'data-turbolinks-track': 'reload' %>
   </head>
   <body class="bg-primary">
       <div id="layoutAuthentication">
@@ -38,18 +38,5 @@
         </div>
       </div>
       <div class="overlay"></div>
-
-<%= javascript_tag do %>
- $(document).bind('ajax:send', function() {
-    $('.loadingio-spinner-wedges-mbm5x7g994r').show()
-    $('.overlay').show()
-  })
-  $(document).bind('ajax:complete', function() {
-    $('.loadingio-spinner-wedges-mbm5x7g994r').hide()
-    $('.overlay').hide()
-  });
-<% end %>
-
-      <%= content_for :scripts %>
   </body>
 </html>
