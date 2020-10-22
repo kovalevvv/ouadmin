@@ -1,0 +1,63 @@
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+ru:
+  app:
+    name: OUAdmin
+  hello: Hello world
+  mail_sent_error: Ошибка отправки почты
+  button_register: Отправить запрос
+  button_register_disable: Обработка...
+  label_user_firstname: Имя
+  label_user_lastname: Фамилия
+  label_user_secondname: Отчество
+  label_user_fullname: Full name
+  label_user_logonname: logon
+  label_user_phone: Phone
+  label_user_company: Company
+  label_user_email: Адрес эл.почты
+  label_user_email_confirmation: Подтвердите адрес эл.почты
+  label_user_subsystem_no: Подсистема СКВ
+  label_user_amenable: Ответственный сотрудник ДИТ за согласование доступа
+  label_user_password: Пароль
+  label_user_password_confirmation: Подтвердить пароль
+  label_user_button: Имя учетной записи
+  label_user_status: Статус
+  label_user_sd: Номер обращения
+  placeholder_user_firstname: Enter first name
+  placeholder_user_lastname: Enter last name
+  placeholder_user_secondname: Enter second name
+  placeholder_user_logon: Enter logon or generate
+  placeholder_user_email: Enter email
+  placeholder_user_email_confirmation: Enter email confirmation
+  placeholder_user_amenable: ФИО
+  placeholder_user_password: Введите свой пароль
+  placeholder_user_password_confirmation: Подтвердите свой пароль
+  text_autogenerate: Generates automatically
+  text_user_enable: User enable?
+  text_user_mail_send: Send an email with a password reset link?
+  text_user_registration: Enter your email address and we will send you a link to create your account.
+  text_user_registration_header: Create account
+  link_password_recover: Зарегистрированы? Восстановить пароль
+  header_new_user: New user
+  tooltip_dn_info: Where
+  Success: Операция выполнена успешно
+  user_register:
+    new:
+      title: Register
+    confirmation:
+      title: Confirmation
+    password_recovery_form:
+      title: Password recovery
+    set_password_form:
+      title: Set password
+  admin:
+    login:
+      title: Authorization
+    dashboard:
+      title: Dasboard
+    new_user:
+      title: New user
+      named_title: New user [%{name}]
+    search:
+      title: Search [%{q}]
