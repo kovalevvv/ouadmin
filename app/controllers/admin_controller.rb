@@ -32,19 +32,17 @@ class AdminController < ApplicationController
   def users
     @users = UserRegister.where(status: [1,2,3]).map do |user|
       entry = user.serializable_hash
-      out = []
-      user_attrs.each do |at|
+      user_attrs.collect do |at|
         if at == "button"
-          out << if user.created_account.present?
+          if user.created_account.present?
             user.created_account
           else
             helpers.link_to("Создать",new_user_from_user_path(user_id: user.id), :class => 'btn btn-primary')
           end
         else
-          out << entry[at]
+          entry[at]
         end
       end
-      out
     end
     render json: { data: @users }
   end
@@ -145,7 +143,7 @@ class AdminController < ApplicationController
   private
 
     def user_attrs
-      ["firstname", "lastname", "secondname", "phone", "company", "email", "button", "status", "sd"]
+      ["firstname", "lastname", "secondname", "phone", "company", "email", "button", "sd"]
     end
 
     def user_logged?

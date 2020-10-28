@@ -18,7 +18,7 @@ class UserRegisterController < ApplicationController
         @user.destroy
   		end
   	else
-      @errors = @user.errors.full_messages
+      @errors = @user.errors.messages.values.flatten
   		render :alert
   	end
   end
@@ -51,7 +51,7 @@ class UserRegisterController < ApplicationController
   def set_password
     @finalize_registration = UserPassword.new(set_password_params)
     unless @finalize_registration.valid?
-      @errors = @finalize_registration.errors.full_messages
+      @errors = @finalize_registration.errors.messages.values.flatten
       render :alert
     else
       @result = @finalize_registration.set_password
