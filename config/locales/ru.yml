@@ -21,6 +21,16 @@ ru:
               blank: Подтвердите email
             amenable:
               blank: Введите ФИО ответственного сотрудника ДИТ
+  activemodel:
+    errors:
+      models:
+        user_password:
+          attributes:
+            password_confirmation:
+              blank: Вы должны подтвердить пароль
+              confirmation: Пароли не совпадают
+            password:
+              invalid: Пароль должен включать хотя бы одну строчную букву, одну прописную букву, одну цифру и один символ. Длина пароля не менее 8.
 
   app:
     name: OUAdmin
@@ -28,14 +38,20 @@ ru:
   mail_sent_error: Ошибка отправки почты
   button_register: Отправить запрос
   button_register_disable: Обработка...
-  label_user_firstname: Имя
+  button_password_recovery: Отправить
+  button_set_password: Отправить
+  password_recovery: Восстановление пароля
+  password_recovery_text: Введите логин или почту, чтобы мы отправили вам ссылку для восстановления пароля
+  set_password: Задать пароль
+  set_password_text: Пароль должен включать хотя бы одну строчную букву, одну прописную букву, одну цифру и один символ. 
   label_user_lastname: Фамилия
   label_user_secondname: Отчество
   label_user_fullname: ФИО
   label_user_logonname: logon
   label_user_phone: Телефон
   label_user_company: Организация
-  label_user_email: Адрес эл.почты
+  label_user_email: Адрес эл. почты
+  label_password_recovery: Адрес эл. почты или логин
   label_user_email_confirmation: Подтвердите адрес эл.почты
   label_user_subsystem_no: Подсистема СКВ
   label_user_amenable: Ответственный сотрудник ДИТ за согласование доступа
@@ -44,12 +60,13 @@ ru:
   label_user_button: Имя учетной записи
   label_user_status: Статус
   label_user_sd: Номер обращения
-  placeholder_user_firstname: ""
-  placeholder_user_lastname: ""
-  placeholder_user_secondname: ""
+  placeholder_password_recovery: login@example.com
+  placeholder_user_firstname: Иван
+  placeholder_user_lastname: Иванов
+  placeholder_user_secondname: Иваныч
   placeholder_user_logon: Enter logon or generate
-  placeholder_user_email: ""
-  placeholder_user_email_confirmation: ""
+  placeholder_user_email: ivan@example.com
+  placeholder_user_email_confirmation: ivan@example.com
   placeholder_user_amenable: ФИО
   placeholder_user_password: Введите свой пароль
   placeholder_user_password_confirmation: Подтвердите свой пароль

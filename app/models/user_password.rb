@@ -7,8 +7,7 @@ class UserPassword
 	attr_accessor :token
 
 	validates :password, format: { 
-		with: /\A(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/, 
-		message: "must include at least one lowercase letter, one uppercase letter, and one digit и символ" 
+		with: /\A(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/
 	}
 
 	validates :password, confirmation: true
