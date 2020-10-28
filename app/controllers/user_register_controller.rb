@@ -18,7 +18,7 @@ class UserRegisterController < ApplicationController
         @user.destroy
   		end
   	else
-      @errors = @user.errors.full_messages
+      @errors = @user.errors.messages.values.flatten
   		render :alert
   	end
   end

@@ -2,6 +2,26 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 ru:
+  activerecord:
+    errors:
+      models:
+        user_register:
+          attributes:
+            firstname:
+              blank: Введите имя
+            lastname:
+              blank: Введите фамилию
+            secondname:
+              blank: Введите отчетсво
+            email: 
+              taken: Такой адрес email уже зарегистрирован в системе
+              blank: Введите адрес email
+            email_confirmation:
+              confirmation: Поля email не совпадают
+              blank: Подтвердите email
+            amenable:
+              blank: Введите ФИО ответственного сотрудника ДИТ
+
   app:
     name: OUAdmin
   hello: Hello world
@@ -11,10 +31,10 @@ ru:
   label_user_firstname: Имя
   label_user_lastname: Фамилия
   label_user_secondname: Отчество
-  label_user_fullname: Full name
+  label_user_fullname: ФИО
   label_user_logonname: logon
-  label_user_phone: Phone
-  label_user_company: Company
+  label_user_phone: Телефон
+  label_user_company: Организация
   label_user_email: Адрес эл.почты
   label_user_email_confirmation: Подтвердите адрес эл.почты
   label_user_subsystem_no: Подсистема СКВ
@@ -24,40 +44,40 @@ ru:
   label_user_button: Имя учетной записи
   label_user_status: Статус
   label_user_sd: Номер обращения
-  placeholder_user_firstname: Enter first name
-  placeholder_user_lastname: Enter last name
-  placeholder_user_secondname: Enter second name
+  placeholder_user_firstname: ""
+  placeholder_user_lastname: ""
+  placeholder_user_secondname: ""
   placeholder_user_logon: Enter logon or generate
-  placeholder_user_email: Enter email
-  placeholder_user_email_confirmation: Enter email confirmation
+  placeholder_user_email: ""
+  placeholder_user_email_confirmation: ""
   placeholder_user_amenable: ФИО
   placeholder_user_password: Введите свой пароль
   placeholder_user_password_confirmation: Подтвердите свой пароль
-  text_autogenerate: Generates automatically
-  text_user_enable: User enable?
-  text_user_mail_send: Send an email with a password reset link?
-  text_user_registration: Enter your email address and we will send you a link to create your account.
-  text_user_registration_header: Create account
+  text_autogenerate: Создается автоматически
+  text_user_enable: Активировать уч. запись?
+  text_user_mail_send: Отправить письмо с сылкой сброса пароя?
+  text_user_registration: ""
+  text_user_registration_header: Регистрация
   link_password_recover: Зарегистрированы? Восстановить пароль
-  header_new_user: New user
-  tooltip_dn_info: Where
+  header_new_user: Создать
+  tooltip_dn_info: В какой OU работаем
   Success: Операция выполнена успешно
   user_register:
     new:
-      title: Register
+      title: Регистрация
     confirmation:
-      title: Confirmation
+      title: Подтверждение регистрации
     password_recovery_form:
-      title: Password recovery
+      title: Восстановление пароля
     set_password_form:
-      title: Set password
+      title: Задать пароль
   admin:
     login:
-      title: Authorization
+      title: Авторизация
     dashboard:
-      title: Dasboard
+      title: Панель управления
     new_user:
-      title: New user
-      named_title: New user [%{name}]
+      title: Новый пользователь
+      named_title: Новый пользователь [%{name}]
     search:
-      title: Search [%{q}]
+      title: Поиск [%{q}]
