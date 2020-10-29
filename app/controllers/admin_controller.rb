@@ -33,14 +33,17 @@ class AdminController < ApplicationController
     @users = UserRegister.where(status: [1,2,3]).map do |user|
       entry = user.serializable_hash
       user_attrs.collect do |at|
-        if at == "button"
-          if user.created_account.present?
-            user.created_account
+        case at
+          when "button"
+            if user.created_account.present?
+              user.created_account
+            else
+              helpers.link_to(helpers.t(:header_new_user),new_user_from_user_path(user_id: user.id), :class => 'btn btn-primary')
+            end
+          when "subsystem_no"
+            entry[at].nil? ? '' : Setting.subsystem_no[entry[at]][0]
           else
-            helpers.link_to("Создать",new_user_from_user_path(user_id: user.id), :class => 'btn btn-primary')
-          end
-        else
-          entry[at]
+            entry[at]
         end
       end
     end
@@ -143,7 +146,7 @@ class AdminController < ApplicationController
   private
 
     def user_attrs
-      ["firstname", "lastname", "secondname", "phone", "company", "email", "button", "sd"]
+      ["firstname", "lastname", "secondname", "company", "email", "button", "subsystem_no"]
     end
 
     def user_logged?

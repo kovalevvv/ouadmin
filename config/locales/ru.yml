@@ -60,6 +60,7 @@ ru:
   label_user_button: Имя учетной записи
   label_user_status: Статус
   label_user_sd: Номер обращения
+  placeholder_user_company: Яндекс
   placeholder_password_recovery: login@example.com
   placeholder_user_firstname: Иван
   placeholder_user_lastname: Иванов
