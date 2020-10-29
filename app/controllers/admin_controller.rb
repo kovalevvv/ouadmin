@@ -41,7 +41,7 @@ class AdminController < ApplicationController
               helpers.link_to(helpers.t(:header_new_user),new_user_from_user_path(user_id: user.id), :class => 'btn btn-primary')
             end
           when "subsystem_no"
-            entry[at].present? ? Setting.subsystem_no[entry[at]][0] : ''
+            entry[at].present? ? Setting.subsystem_no[entry[at].to_s.to_sym] : ''
           else
             entry[at]
         end

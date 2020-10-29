@@ -25,7 +25,7 @@ end %>
     </div>
     <div class="form-group">
         <%= f.label :subsystem_no, t(:label_user_subsystem_no), :class => 'small mb-1' %>
-        <%= f.select :subsystem_no, Setting.subsystem_no, { include_blank: false }, :class => 'form-control form-control-lg' %>
+        <%= f.select :subsystem_no, Setting.subsystem_no.collect {|k,v| [v, k.to_s]}, { include_blank: false }, :class => 'form-control form-control-lg' %>
         <%= f.label :amenable, t(:label_user_amenable), :class => 'small mb-1' %>
         <%= f.text_field :amenable, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_amenable) %>
     </div>
