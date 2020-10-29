@@ -14,6 +14,10 @@ end %>
     	<%= f.text_field :secondname, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_secondname) %>
     </div>
     <div class="form-group">
+      <%= f.label :company, t(:label_user_company), :class => 'small mb-1' %>
+      <%= f.text_field :company, :class => 'form-control py-4', :placeholder => t(:placeholder_user_company) %>
+    </div>
+    <div class="form-group">
     	<%= f.label :email, t(:label_user_email), :class => 'small mb-1' %>
     	<%= f.email_field :email, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_email) %>
     	<%= f.label :email_confirmation, t(:label_user_email_confirmation), :class => 'small mb-1' %>
@@ -21,7 +25,7 @@ end %>
     </div>
     <div class="form-group">
         <%= f.label :subsystem_no, t(:label_user_subsystem_no), :class => 'small mb-1' %>
-        <%= f.select :subsystem_no, Setting.subsystem_no, { include_blank: false }, :class => 'form-control form-control-lg' %>
+        <%= f.select :subsystem_no, Setting.subsystem_no.collect {|k,v| [v, k.to_s]}, { include_blank: false }, :class => 'form-control form-control-lg' %>
         <%= f.label :amenable, t(:label_user_amenable), :class => 'small mb-1' %>
         <%= f.text_field :amenable, :class => 'form-control py-4', :placeholder =>  t(:placeholder_user_amenable) %>
     </div>

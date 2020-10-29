@@ -44,6 +44,7 @@ ru:
   password_recovery_text: Введите логин или почту, чтобы мы отправили вам ссылку для восстановления пароля
   set_password: Задать пароль
   set_password_text: Пароль должен включать хотя бы одну строчную букву, одну прописную букву, одну цифру и один символ. 
+  label_user_firstname: Имя
   label_user_lastname: Фамилия
   label_user_secondname: Отчество
   label_user_fullname: ФИО
@@ -60,6 +61,7 @@ ru:
   label_user_button: Имя учетной записи
   label_user_status: Статус
   label_user_sd: Номер обращения
+  placeholder_user_company: Яндекс
   placeholder_password_recovery: login@example.com
   placeholder_user_firstname: Иван
   placeholder_user_lastname: Иванов

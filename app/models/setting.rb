@@ -13,7 +13,7 @@ class Setting < RailsSettings::Base
   field :global_search_dn, type: :string, default: ENV.fetch("OUADMIN_GLOBAL_SEARCH_DN")
   field :global_search_port, type: :integer, default: ENV.fetch("OUADMIN_GLOBAL_SEARCH_PORT")
   field :ou_dn, type: :string, default: ENV.fetch("OUADMIN_OU_DN")
-  field :subsystem_no, type: :array, default: [['СКВ: Jira& Confluence', 1], ['СКВ: Gitlab', 2], ['СКВ: Redmine', 3]]
+  field :subsystem_no, type: :hash, default: {'1': 'СКВ: Jira& Confluence', '2': 'СКВ: Gitlab', '3': 'СКВ: Redmine'}
   field :admin_group, type: :string, default: ENV.fetch("OUADMIN_ADMIN_GROUP")
 
   # field :default_locale, default: "en", type: :string
